@@ -1,0 +1,27 @@
+:host {
+    display: block;
+}
+
+.mat-table {
+    .mat-column-challengeName {
+        flex: 4 0 0;
+    }
+
+    .mat-column-challengeUser {
+        flex: 2 0 0;
+    }
+
+    .mat-column-challengeDate {
+        flex: 1.5 0 0;
+    }
+
+    .mat-row:nth-child(2n) {
+        background-color: #f6f6f6;
+    }
+}
+
+.mat-input-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem;
+}

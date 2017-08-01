@@ -1,0 +1,26 @@
+:host {
+    display: block;
+    padding: 1rem 2rem;
+
+    &::after {
+        content: " ";
+        display: table;
+        clear: both;
+    }
+}
+
+.summary-item {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+
+    &:first-of-type {
+        margin-left: -1rem;
+        margin-right: 1rem;
+    }
+
+    &:last-of-type {
+        margin-right: -1rem;
+        margin-left: 1rem;
+    }
+}

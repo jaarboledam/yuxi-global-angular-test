@@ -1,0 +1,53 @@
+<md-input-container floatPlaceholder="never">
+    <input mdInput #filter placeholder="Search Challenges">
+</md-input-container>
+
+ <md-table #table [dataSource]="dataSource" mdSort>
+
+    <ng-container cdkColumnDef="challengeName">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> Title </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="challengeUser">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> Created By </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.userFullName}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="challengeDate">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> Modified </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.modifiedDate | date:'y-MM-dd'}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="challengeInvited">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> Invited </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.numberInvited}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="challengeEntries">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> Entries </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.numberOfEntries}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="challengeToReview">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> To Review </md-header-cell>
+        <md-cell *cdkCellDef="let row">
+            <md-chip-list>
+                <md-chip color="warn" selected="true">{{row.numberToReview}}</md-chip>
+            </md-chip-list>
+        </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="challengeActions">
+        <md-header-cell *cdkHeaderCellDef> Actions </md-header-cell>
+        <md-cell *cdkCellDef="let row">
+            <button md-button>...</button>
+        </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+</md-table>
+
+<md-paginator #paginator [length]="100" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]">
+</md-paginator>

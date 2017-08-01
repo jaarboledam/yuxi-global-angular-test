@@ -1,0 +1,42 @@
+<md-input-container floatPlaceholder="never">
+    <input mdInput #filter placeholder="Search Challenges">
+</md-input-container>
+
+<md-table #table [dataSource]="dataSource" mdSort>
+
+    <ng-container cdkColumnDef="challengeName">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> Title </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="challengeUser">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> Created By </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.userFullName}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="challengeScore">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> Avg. Score </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.overallScore || '-'}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="challengeInvitedDate">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> Invited </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.modifiedDate | date:'y-MM-dd'}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="challengeCompletedDate">
+        <md-header-cell *cdkHeaderCellDef md-sort-header> Completed </md-header-cell>
+        <md-cell *cdkCellDef="let row">
+            <span *ngIf="row.completedDate; else completeButton">{{row.completedDate | date:'y-MM-dd'}}</span>
+            <ng-template #completeButton>
+                <button md-raised-button color="warn">Complete Now</button>
+            </ng-template>
+        </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+</md-table> 
+
+<md-paginator #paginator [length]="100" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]">
+</md-paginator>
