@@ -9,14 +9,14 @@ export class ChallengesService {
     constructor(private _http: Http) {}
 
     getTeamChallenges(): Promise<any> {
-        return this._http.get('/assets/fake-data/TeamChallenges.json')
+        return this._http.get('./assets/fake-data/TeamChallenges.json')
             .toPromise()
             .then((response: Response) => response.json())
             .catch((err: any) => Promise.reject(err.message || err));
     }
 
     getMyChallenges(): Promise<any> {
-        return this._http.get('/assets/fake-data/MyChallenges.json')
+        return this._http.get('./assets/fake-data/MyChallenges.json')
             .toPromise()
             .then((response: Response) => response.json())
             .catch((err: any) => Promise.reject(err.message || err));
